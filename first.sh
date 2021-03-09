@@ -2,9 +2,9 @@
 logfile=/home/mehul/learning_stuff/bash/first/access.log
 
 #Highest Hosted Request on 12/Feb/2021.
-cat $logfile | grep '12/Feb/2021' | awk '{print $NF}' | sort | uniq -c | sort -r | head -1 > feb_host.txt 
-times=$(awk '{print $1}' feb_host.txt)
-host_name=$(awk '{print $2}' feb_host.txt)
+cat $logfile | grep '12/Feb/2021' | awk '{print $NF}' | sort | uniq -c | sort -r | head -1 > feb_hosts.txt 
+times=$(awk '{print $1}' feb_hosts.txt)
+host_name=$(awk '{print $2}' feb_hosts.txt)
 echo "On \"12/Feb/2021\" - \"$host_name\" was the highest requested host and it was requested $times many times."
 
 #Highest Requested upstream_ip on 12/Feb/2021
@@ -60,4 +60,14 @@ while read line; do
 	set -- $line
 	printf "BodyByteSent: \"$2\" requested $1 times.\n"
 done <  top_5_requested_bodybytesent.txt
+
+#Top 5 Requested Path
+cat $logfile | awk '{print $5}' | sort | uniq -c| sort -nr | head -5 > top_5_requested_paths.txt
+printf "\n\nTop 5 Requested Paths:\n++++++++++++++++++++\n"
+
+while read line; do
+	set -- $line
+	printf "Path : \"$2\" requested $1 times.\n"
+done < top_5_requested_paths.txt
+
 
