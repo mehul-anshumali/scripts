@@ -1,5 +1,0 @@
-     47 /recharge/phone/bandwidth-monitored
-     45 /recharge/dth/empowering
-     38 /myapi/kyc/needs-based
-     37 /recharge/dth/info-mediaries
-     35 /myapi/kyc/groupware
