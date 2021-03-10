@@ -1,5 +1,6 @@
 #!/bin/bash
-logfile=/Users/mehul.intern/development/bash/scripts/access.log
+logfile1=/Users/mehul.intern/development/bash/scripts/access.log
+logfile=/home/mehul/learning_stuff/bash/first/access.log
 write_file=record.txt
 
 # ip=$(awk '{print $1}' $logfile)
@@ -99,7 +100,12 @@ write_file=record.txt
 # awk -v d1="$(date  -j -f "%d/%m/%Y:%H:%M" '-10 min' '+%s')" -v d2="$(date '+%s')" -F '[-":,T+]' ' { ts=mktime($5" "$6" "$7" "$8" "$9" "$10) } ts >= d1 && ts <= d2 ts > d2{ exit 0 }' $logfile
 
 
-d1=$(date --date="-10 min" "+%d/%m/%Y:%H:%M:%S")
-d2=$(date "+%d/%m/%Y:%H:%M:%S")
-echo $d1
-
+#d1=$(date --date="-10 min" "+%d/%m/%Y:%H:%M:%S")
+#d2=$(date "+%d/%m/%Y:%H:%M:%S")
+#echo $d1
+#cat $logfile | awk '{print $NF, $7}'  | sed -n "/^$(date --date="-10 min" "+_%d/%b/%Y:%H:%M:%S")/,\$p"
+d1=$(date --date="-10 min" "+%_d/%b/%Y:%H:%M:%S")
+d2=$(date "+%_d/%b/%Y:%H:%M:%S")
+#echo $d1
+#echo $d2
+awk -v d1="$d1" -v d2="$d2" "$2 > d1 && $2 < $d2 || $2 ~ $d2" $logfile
